@@ -23,7 +23,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth; /* للتمرير السلس */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -55,7 +55,6 @@
             gap: 12px;
         }
 
-        /* أيقونة التطبيق المصغرة في الهيدر (مخفية افتراضياً) */
         .nav-icon {
             width: 35px;
             border-radius: 8px;
@@ -71,16 +70,15 @@
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            white-space: nowrap;
         }
 
-        /* أزرار النافبار */
         .nav-right {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        /* تنسيق زر Pricing الجديد ليكون شبه زر التحميل */
         .pricing-btn {
             background: rgba(14, 165, 233, 0.1);
             color: var(--primary);
@@ -96,6 +94,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
         .pricing-btn:hover {
@@ -106,12 +105,12 @@
         }
 
         .nav-download-btn {
-            display: none; /* مخفي افتراضياً */
+            display: none;
             padding: 10px 24px;
             font-size: 14px;
+            white-space: nowrap;
         }
 
-        /* كلاس الـ Scroll الذي يضيفه الجافاسكربت */
         .navbar.scrolled .nav-icon {
             display: block;
             opacity: 1;
@@ -128,7 +127,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* الأزرار العامة */
+        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -191,7 +190,7 @@
             margin-bottom: 40px;
         }
 
-        /* Container & Sections */
+        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -205,7 +204,6 @@
             font-weight: 700;
         }
 
-        /* Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -231,10 +229,9 @@
         .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
 
-        /* Pricing */
         .pricing-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
@@ -272,7 +269,6 @@
             font-size: 1rem;
         }
 
-        /* Note Section */
         .free-note {
             background: rgba(234, 179, 8, 0.1);
             border: 1px dashed rgba(234, 179, 8, 0.4);
@@ -285,7 +281,6 @@
             font-size: 1.1rem;
         }
 
-        /* Footer */
         footer {
             background: #020617;
             padding: 60px 20px 30px;
@@ -298,6 +293,7 @@
             justify-content: center;
             gap: 30px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -327,7 +323,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animation Classes (Fade in on scroll) */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -338,18 +333,40 @@
             transform: translateY(0);
         }
 
+        /* 📱 إعدادات الموبايل (حل مشكلة التداخل) 📱 */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .pricing-container { grid-template-columns: 1fr; }
-            .navbar { padding: 15px 20px; }
+            h1 { font-size: 2.2rem; }
             .hero { padding-top: 100px; }
+            
+            /* تعديل النافبار للموبايل */
+            .navbar { padding: 12px 15px; }
+            .brand { font-size: 18px; }
+            .nav-left { gap: 8px; }
+            .nav-right { gap: 8px; }
+            
+            /* تصغير الأزرار */
+            .pricing-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .nav-download-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .nav-icon {
+                width: 28px;
+            }
+
+            /* إخفاء كلمة HouslyGo عند التمرير لتوفير مساحة للزرين والأيقونة فقط */
+            .navbar.scrolled .brand {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    
-<nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-left">
             <img src="ico0n.png" alt="HouslyGo Icon" class="nav-icon">
             <div class="brand">HouslyGo</div>
@@ -364,8 +381,7 @@
         </div>
     </nav>
 
-    
-<header class="hero">
+    <header class="hero">
         <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img" id="mainIcon">
         <h1>Find Your Perfect Space</h1>
         <p>The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.</p>
@@ -376,7 +392,7 @@
 
     <main class="container">
         
-<h2 class="section-title reveal">Our Services</h2>
+        <h2 class="section-title reveal">Our Services</h2>
         <div class="services-grid reveal">
             <div class="card">
                 <i class="fa-solid fa-building"></i>
@@ -395,8 +411,7 @@
             </div>
         </div>
 
-        
-<div id="pricing">
+        <div id="pricing">
             <h2 class="section-title reveal">Transparent Pricing</h2>
             <div class="pricing-container reveal">
                 
@@ -420,15 +435,13 @@
 
             </div>
 
-            
-<div class="free-note reveal">
+            <div class="free-note reveal">
                 <i class="fa-solid fa-star"></i> Note: All services are completely FREE during the trial period!
             </div>
         </div>
     </main>
 
-    
-<footer>
+    <footer>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms & Conditions</a>
@@ -446,14 +459,11 @@
         </p>
     </footer>
 
-    
-<script>
-        // تغيير الشريط العلوي عند التمرير
+    <script>
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             const heroHeight = document.querySelector('.hero').offsetHeight;
             
-            // إذا نزل المستخدم لأسفل بمقدار نصف الشاشة الأولى
             if (window.scrollY > heroHeight / 2) {
                 navbar.classList.add('scrolled');
             } else {
@@ -461,7 +471,6 @@
             }
         });
 
-        // تأثير الظهور التدريجي (Fade-in on scroll)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -475,7 +484,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // استدعاء الدالة لتشغيلها عند فتح الصفحة
+        reveal();
     </script>
 </body>
 </html>
