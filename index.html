@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HouslyGo | Smart Real Estate Platform</title>
     
-    <!-- استدعاء خطوط جوجل (Poppins) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- استدعاء مكتبة الأيقونات (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* إعدادات المتصفح الأساسية */
         :root {
             --primary: #0ea5e9;
             --secondary: #6366f1;
@@ -27,6 +23,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth; /* للتمرير السلس */
         }
 
         body {
@@ -36,22 +33,39 @@
             overflow-x: hidden;
         }
 
-        /* شريط التنقل (Navbar) */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .navbar .brand {
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* أيقونة التطبيق المصغرة في الهيدر (مخفية افتراضياً) */
+        .nav-icon {
+            width: 35px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .brand {
             font-size: 24px;
             font-weight: 700;
             background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -59,13 +73,68 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .navbar .company {
-            font-size: 14px;
-            color: var(--text-muted);
+        /* أزرار النافبار */
+        .nav-link {
+            color: var(--text-main);
+            text-decoration: none;
             font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        /* القسم الافتتاحي (Hero Section) */
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-download-btn {
+            display: none; /* مخفي افتراضياً */
+            padding: 10px 24px;
+            font-size: 14px;
+        }
+
+        /* كلاس الـ Scroll الذي يضيفه الجافاسكربت */
+        .navbar.scrolled .nav-icon {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .navbar.scrolled .nav-link {
+            display: none;
+        }
+        .navbar.scrolled .nav-download-btn {
+            display: flex;
+            animation: fadeInRight 0.3s ease forwards;
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* الأزرار العامة */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.5);
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -105,42 +174,7 @@
             margin-bottom: 40px;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 16px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.5);
-        }
-
-        /* شريط العرض المجاني */
-        .promo-banner {
-            background: linear-gradient(90deg, #f59e0b, #fbbf24);
-            color: #000;
-            text-align: center;
-            padding: 15px 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: -20px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
-        }
-
-        /* الحاويات والأقسام */
+        /* Container & Sections */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -154,7 +188,7 @@
             font-weight: 700;
         }
 
-        /* شبكة الخدمات (Grid) */
+        /* Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -177,18 +211,10 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
+        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        /* قائمة الأسعار */
+        /* Pricing */
         .pricing-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -210,10 +236,7 @@
             padding-bottom: 15px;
         }
 
-        .price-list {
-            list-style: none;
-        }
-
+        .price-list { list-style: none; }
         .price-list li {
             display: flex;
             justify-content: space-between;
@@ -222,11 +245,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 1.1rem;
         }
-
-        .price-list li:last-child {
-            border-bottom: none;
-        }
-
+        .price-list li:last-child { border-bottom: none; }
         .price-list li span {
             font-weight: 700;
             color: #fff;
@@ -236,7 +255,20 @@
             font-size: 1rem;
         }
 
-        /* التذييل والروابط */
+        /* Note Section */
+        .free-note {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px dashed rgba(234, 179, 8, 0.4);
+            color: #facc15;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
         footer {
             background: #020617;
             padding: 60px 20px 30px;
@@ -248,7 +280,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .footer-links a {
@@ -258,8 +290,19 @@
             transition: color 0.3s;
         }
 
-        .footer-links a:hover {
-            color: var(--primary);
+        .footer-links a:hover { color: var(--primary); }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sota-logo {
+            width: 40px;
+            border-radius: 10px;
         }
 
         .copyright {
@@ -267,11 +310,17 @@
             font-size: 0.9rem;
         }
 
-        .copyright span {
-            color: var(--primary);
+        /* Animation Classes (Fade in on scroll) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* للتوافق مع شاشات الموبايل */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .pricing-container { grid-template-columns: 1fr; }
@@ -282,33 +331,34 @@
 </head>
 <body>
 
-    <!-- الشريط العلوي -->
-    <nav class="navbar">
-        <div class="brand">HouslyGo</div>
-        <div class="company">by SOTA-eApps</div>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <img src="ico0n.png" alt="HouslyGo Icon" class="nav-icon">
+            <div class="brand">HouslyGo</div>
+        </div>
+        <div class="nav-right">
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <button class="btn-primary nav-download-btn">
+                <i class="fa-brands fa-google-play"></i> Download
+            </button>
+        </div>
     </nav>
 
-    <!-- القسم الرئيسي -->
+    <!-- Hero -->
     <header class="hero">
-        <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img">
+        <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img" id="mainIcon">
         <h1>Find Your Perfect Space</h1>
         <p>The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.</p>
-        <button class="btn-primary">
+        <button class="btn-primary" id="mainDownloadBtn">
             <i class="fa-brands fa-google-play"></i> Download Soon
         </button>
     </header>
 
-    <!-- شريط الفترة التجريبية -->
-    <div class="promo-banner">
-        <i class="fa-solid fa-gift"></i> Special Offer: All services are 100% FREE during the trial period!
-    </div>
-
-    <!-- محتوى الموقع الأساسي -->
     <main class="container">
-        
-        <!-- قسم الخدمات -->
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
+        <!-- Services -->
+        <h2 class="section-title reveal">Our Services</h2>
+        <div class="services-grid reveal">
             <div class="card">
                 <i class="fa-solid fa-building"></i>
                 <h3>Buy & Sell</h3>
@@ -326,46 +376,87 @@
             </div>
         </div>
 
-        <!-- قسم الأسعار -->
-        <h2 class="section-title">Transparent Pricing</h2>
-        <div class="pricing-container">
-            
-            <!-- رسوم النشر -->
-            <div class="pricing-box">
-                <h3><i class="fa-solid fa-bullhorn"></i> Publishing Prices</h3>
-                <ul class="price-list">
-                    <li>Post an Advertisement <span>20 EGP</span></li>
-                </ul>
+        <!-- Pricing ID -->
+        <div id="pricing">
+            <h2 class="section-title reveal">Transparent Pricing</h2>
+            <div class="pricing-container reveal">
+                
+                <div class="pricing-box">
+                    <h3><i class="fa-solid fa-bullhorn"></i> Publishing Prices</h3>
+                    <ul class="price-list">
+                        <li>Post an Advertisement <span>20 EGP</span></li>
+                    </ul>
+                </div>
+
+                <div class="pricing-box">
+                    <h3><i class="fa-solid fa-handshake"></i> Service Fees <br><small style="font-size:1rem; color:#94a3b8; font-weight:400;">(Paid by buyer / renter)</small></h3>
+                    <ul class="price-list">
+                        <li>Apartment for sale <span>350 EGP</span></li>
+                        <li>Apartment for rent <span>250 EGP</span></li>
+                        <li>Full double room <span>150 EGP</span></li>
+                        <li>Single room <span>150 EGP</span></li>
+                        <li>Bed in shared room <span>100 EGP</span></li>
+                    </ul>
+                </div>
+
             </div>
 
-            <!-- رسوم الخدمة -->
-            <div class="pricing-box">
-                <h3><i class="fa-solid fa-handshake"></i> Service Fees <br><small style="font-size:1rem; color:#94a3b8; font-weight:400;">(Paid by buyer / renter)</small></h3>
-                <ul class="price-list">
-                    <li>Apartment for sale <span>350 EGP</span></li>
-                    <li>Apartment for rent <span>250 EGP</span></li>
-                    <li>Full double room <span>150 EGP</span></li>
-                    <li>Single room <span>150 EGP</span></li>
-                    <li>Bed in shared room <span>100 EGP</span></li>
-                </ul>
+            <!-- Free Trial Note -->
+            <div class="free-note reveal">
+                <i class="fa-solid fa-star"></i> Note: All services are completely FREE during the trial period!
             </div>
-
         </div>
-
     </main>
 
-    <!-- التذييل (Footer) -->
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms & Conditions</a>
             <a href="mailto:nestbooksupport@gmail.com">Contact Support</a>
         </div>
+        
+        <div class="company-info">
+            <img src="sota.png" alt="SOTA-eApps Logo" class="sota-logo">
+            <span style="font-size: 1.1rem; font-weight: 600;">by SOTA-eApps</span>
+        </div>
+
         <p class="copyright">
-            &copy; 2026 <span>SOTA-eApps</span>. All rights reserved. <br>
+            &copy; 2026 SOTA-eApps. All rights reserved. <br>
             nestbooksupport@gmail.com
         </p>
     </footer>
 
+    <!-- JavaScript للتحكم في الشريط العلوي وحركات الظهور التدريجي -->
+    <script>
+        // تغيير الشريط العلوي عند التمرير
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const heroHeight = document.querySelector('.hero').offsetHeight;
+            
+            // إذا نزل المستخدم لأسفل بمقدار نصف الشاشة الأولى
+            if (window.scrollY > heroHeight / 2) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // تأثير الظهور التدريجي (Fade-in on scroll)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // استدعاء الدالة لتشغيلها عند فتح الصفحة
+    </script>
 </body>
 </html>
