@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HouslyGo | Smart Real Estate Platform</title>
+    <title data-i18n="title">HouslyGo | Smart Real Estate Platform</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- خطوط جوجل: Poppins للإنجليزي و Cairo للعربي -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === متغيرات الألوان الأساسية (الوضع الداكن هو الافتراضي) === */
+        /* المتغيرات (الداكن والفاتح التلقائي) */
         :root {
             --primary: #0ea5e9;
             --secondary: #6366f1;
-            
-            /* ألوان الوضع الداكن */
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --text-main: #f8fafc;
@@ -23,25 +22,20 @@
             --nav-bg: rgba(15, 23, 42, 0.85);
             --hero-bg: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
             --footer-bg: #020617;
-            
-            /* ألوان مخصصة للعناصر */
             --badge-bg: rgba(14, 165, 233, 0.2);
             --badge-text: #fff;
             --card-shadow: rgba(0, 0, 0, 0.4);
-            
-            /* ألوان الملاحظة المجانية */
             --note-bg: rgba(234, 179, 8, 0.1);
             --note-border: rgba(234, 179, 8, 0.4);
             --note-text: #facc15;
+            --font-en: 'Poppins', sans-serif;
+            --font-ar: 'Cairo', sans-serif;
         }
 
-        /* === متغيرات الوضع الفاتح (تعمل تلقائياً إذا كان جهاز المستخدم فاتحاً) === */
         @media (prefers-color-scheme: light) {
             :root {
-                --primary: #0284c7; /* لون أزرق أغمق قليلاً ليناسب الخلفية الفاتحة */
+                --primary: #0284c7; 
                 --secondary: #4f46e5;
-                
-                /* ألوان الوضع الفاتح */
                 --bg-color: #f8fafc;
                 --card-bg: #ffffff;
                 --text-main: #0f172a;
@@ -50,13 +44,9 @@
                 --nav-bg: rgba(255, 255, 255, 0.85);
                 --hero-bg: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #f8fafc 70%);
                 --footer-bg: #f1f5f9;
-                
-                /* ألوان مخصصة للعناصر */
                 --badge-bg: rgba(14, 165, 233, 0.15);
                 --badge-text: #0284c7;
                 --card-shadow: rgba(0, 0, 0, 0.1);
-
-                /* ألوان الملاحظة المجانية في الفاتح */
                 --note-bg: rgba(245, 158, 11, 0.1);
                 --note-border: rgba(245, 158, 11, 0.4);
                 --note-text: #b45309;
@@ -67,16 +57,21 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
 
+        /* التحكم في الخط بناءً على اتجاه الصفحة */
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: var(--font-en);
+        }
+        
+        body[dir="rtl"] {
+            font-family: var(--font-ar);
         }
 
         /* Navbar */
@@ -125,6 +120,31 @@
             gap: 15px;
         }
 
+        /* تصميم الـ Spinner (قائمة اللغات) */
+        .lang-spinner {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none; /* إخفاء السهم الافتراضي للمتصفح */
+            text-align: center;
+        }
+        
+        .lang-spinner:hover {
+            background: rgba(14, 165, 233, 0.2);
+        }
+
+        .lang-spinner option {
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
         .pricing-btn {
             background: rgba(14, 165, 233, 0.1);
             color: var(--primary);
@@ -136,7 +156,6 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.1);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -157,20 +176,12 @@
             white-space: nowrap;
         }
 
-        .navbar.scrolled .nav-icon {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .navbar.scrolled .nav-download-btn {
-            display: flex;
-            animation: fadeInRight 0.3s ease forwards;
-        }
+        .navbar.scrolled .nav-icon { display: block; opacity: 1; transform: scale(1); }
+        .navbar.scrolled .nav-download-btn { display: flex; animation: fadeIn 0.3s ease forwards; }
 
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* الأزرار العامة */
@@ -223,33 +234,12 @@
             100% { transform: translateY(0px); }
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
 
         /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; font-weight: 700; }
 
         .services-grid {
             display: grid;
@@ -296,6 +286,9 @@
             color: var(--primary);
             border-bottom: 2px dashed var(--border-color);
             padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .price-list { list-style: none; }
@@ -315,6 +308,7 @@
             padding: 5px 15px;
             border-radius: 50px;
             font-size: 1rem;
+            white-space: nowrap;
         }
 
         .free-note {
@@ -327,7 +321,10 @@
             margin-top: 40px;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         footer {
@@ -338,76 +335,31 @@
             transition: background 0.3s ease;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.3s; }
         .footer-links a:hover { color: var(--primary); }
+        .company-info { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .sota-logo { width: 40px; border-radius: 10px; }
+        .copyright { color: var(--text-muted); font-size: 0.9rem; }
 
-        .company-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .sota-logo {
-            width: 40px;
-            border-radius: 10px;
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 📱 إعدادات الموبايل 📱 */
+        /* 📱 الموبايل 📱 */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .hero { padding-top: 100px; }
-            
             .navbar { padding: 12px 15px; }
             .brand { font-size: 18px; }
             .nav-left { gap: 8px; }
-            .nav-right { gap: 8px; }
+            .nav-right { gap: 6px; }
             
-            .pricing-btn {
-                padding: 8px 12px;
-                font-size: 13px;
+            .pricing-btn, .nav-download-btn, .lang-spinner {
+                padding: 6px 10px;
+                font-size: 12px;
             }
-            .nav-download-btn {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-            .nav-icon {
-                width: 28px;
-            }
-
-            .navbar.scrolled .brand {
-                display: none;
-            }
+            .nav-icon { width: 28px; }
+            .navbar.scrolled .brand { display: none; }
         }
     </style>
 </head>
@@ -419,98 +371,208 @@
             <div class="brand">HouslyGo</div>
         </div>
         <div class="nav-right">
+            <!-- الـ Spinner الخاص باللغة -->
+            <select id="langSpinner" class="lang-spinner">
+                <option value="en">EN</option>
+                <option value="ar">عربي</option>
+            </select>
+
             <a href="#pricing" class="pricing-btn">
-                <i class="fa-solid fa-tags"></i> Pricing
+                <i class="fa-solid fa-tags"></i> <span data-i18n="pricingBtn">Pricing</span>
             </a>
             <button class="btn-primary nav-download-btn">
-                <i class="fa-brands fa-android"></i> Download
+                <i class="fa-brands fa-android"></i> <span data-i18n="downloadBtn">Download</span>
             </button>
         </div>
     </nav>
 
     <header class="hero">
         <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img" id="mainIcon">
-        <h1>Find Your Perfect Space</h1>
-        <p>The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.</p>
+        <h1 data-i18n="heroTitle">Find Your Perfect Space</h1>
+        <p data-i18n="heroDesc">The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.</p>
         <button class="btn-primary" id="mainDownloadBtn">
-            <i class="fa-brands fa-android"></i> Download Soon
+            <i class="fa-brands fa-android"></i> <span data-i18n="downloadSoon">Download Soon</span>
         </button>
     </header>
 
     <main class="container">
         
-        <h2 class="section-title reveal">Our Services</h2>
+        <h2 class="section-title reveal" data-i18n="ourServices">Our Services</h2>
         <div class="services-grid reveal">
             <div class="card">
                 <i class="fa-solid fa-building"></i>
-                <h3>Buy & Sell</h3>
-                <p>Browse premium apartments for sale or list your property to reach thousands of buyers instantly.</p>
+                <h3 data-i18n="buySell">Buy & Sell</h3>
+                <p data-i18n="buySellDesc">Browse premium apartments for sale or list your property to reach thousands of buyers instantly.</p>
             </div>
             <div class="card">
                 <i class="fa-solid fa-key"></i>
-                <h3>Rent Apartments</h3>
-                <p>Find the perfect apartment for rent that fits your lifestyle and budget, safely and securely.</p>
+                <h3 data-i18n="rentApts">Rent Apartments</h3>
+                <p data-i18n="rentAptsDesc">Find the perfect apartment for rent that fits your lifestyle and budget, safely and securely.</p>
             </div>
             <div class="card">
                 <i class="fa-solid fa-bed"></i>
-                <h3>Rent Rooms</h3>
-                <p>Looking for a room? We offer single rooms, shared beds, and full double rooms to suit your needs.</p>
+                <h3 data-i18n="rentRooms">Rent Rooms</h3>
+                <p data-i18n="rentRoomsDesc">Looking for a room? We offer single rooms, shared beds, and full double rooms to suit your needs.</p>
             </div>
         </div>
 
         <div id="pricing">
-            <h2 class="section-title reveal">Transparent Pricing</h2>
+            <h2 class="section-title reveal" data-i18n="transparentPricing">Transparent Pricing</h2>
             <div class="pricing-container reveal">
                 
                 <div class="pricing-box">
-                    <h3><i class="fa-solid fa-bullhorn"></i> Publishing Prices</h3>
+                    <h3><i class="fa-solid fa-bullhorn"></i> <span data-i18n="pubPricesTitle">Publishing Prices</span></h3>
                     <ul class="price-list">
-                        <li>Post an Advertisement <span>20 EGP</span></li>
+                        <li><span data-i18n="postAd">Post an Advertisement</span> <span data-i18n="20egp">20 EGP</span></li>
                     </ul>
                 </div>
 
                 <div class="pricing-box">
-                    <h3><i class="fa-solid fa-handshake"></i> Service Fees <br><small style="font-size:1rem; color:var(--text-muted); font-weight:400;">(Paid by buyer / renter)</small></h3>
+                    <h3>
+                        <i class="fa-solid fa-handshake"></i> 
+                        <div>
+                            <span data-i18n="serviceFeesTitle">Service Fees</span> <br>
+                            <small style="font-size:1rem; color:var(--text-muted); font-weight:400;" data-i18n="paidByBuyer">(Paid by buyer / renter)</small>
+                        </div>
+                    </h3>
                     <ul class="price-list">
-                        <li>Apartment for sale <span>350 EGP</span></li>
-                        <li>Apartment for rent <span>250 EGP</span></li>
-                        <li>Full double room <span>150 EGP</span></li>
-                        <li>Single room <span>150 EGP</span></li>
-                        <li>Bed in shared room <span>100 EGP</span></li>
+                        <li><span data-i18n="aptSale">Apartment for sale</span> <span data-i18n="350egp">350 EGP</span></li>
+                        <li><span data-i18n="aptRent">Apartment for rent</span> <span data-i18n="250egp">250 EGP</span></li>
+                        <li><span data-i18n="fullRoom">Full double room</span> <span data-i18n="150egp">150 EGP</span></li>
+                        <li><span data-i18n="singleRoom">Single room</span> <span data-i18n="150egp">150 EGP</span></li>
+                        <li><span data-i18n="sharedBed">Bed in shared room</span> <span data-i18n="100egp">100 EGP</span></li>
                     </ul>
                 </div>
 
             </div>
 
             <div class="free-note reveal">
-                <i class="fa-solid fa-star"></i> Note: All services are completely FREE during the trial period!
+                <i class="fa-solid fa-star"></i> <span data-i18n="freeNote">Note: All services are completely FREE during the trial period!</span>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="mailto:nestbooksupport@gmail.com">Contact Support</a>
+            <a href="privacy.html" data-i18n="privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="terms">Terms & Conditions</a>
+            <a href="mailto:nestbooksupport@gmail.com" data-i18n="contact">Contact Support</a>
         </div>
         
         <div class="company-info">
             <img src="sota.png" alt="SOTA-eApps Logo" class="sota-logo">
-            <span style="font-size: 1.1rem; font-weight: 600;">by SOTA-eApps</span>
+            <span style="font-size: 1.1rem; font-weight: 600;" data-i18n="bySota">by SOTA-eApps</span>
         </div>
 
         <p class="copyright">
-            &copy; 2026 SOTA-eApps. All rights reserved. <br>
+            <span data-i18n="copyright">&copy; 2026 SOTA-eApps. All rights reserved.</span> <br>
             nestbooksupport@gmail.com
         </p>
     </footer>
 
+    <!-- قاموس اللغات وأكواد التبديل -->
     <script>
+        const translations = {
+            en: {
+                title: "HouslyGo | Smart Real Estate Platform",
+                pricingBtn: "Pricing",
+                downloadBtn: "Download",
+                heroTitle: "Find Your Perfect Space",
+                heroDesc: "The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.",
+                downloadSoon: "Download Soon",
+                ourServices: "Our Services",
+                buySell: "Buy & Sell",
+                buySellDesc: "Browse premium apartments for sale or list your property to reach thousands of buyers instantly.",
+                rentApts: "Rent Apartments",
+                rentAptsDesc: "Find the perfect apartment for rent that fits your lifestyle and budget, safely and securely.",
+                rentRooms: "Rent Rooms",
+                rentRoomsDesc: "Looking for a room? We offer single rooms, shared beds, and full double rooms to suit your needs.",
+                transparentPricing: "Transparent Pricing",
+                pubPricesTitle: "Publishing Prices",
+                postAd: "Post an Advertisement",
+                serviceFeesTitle: "Service Fees",
+                paidByBuyer: "(Paid by buyer / renter)",
+                aptSale: "Apartment for sale",
+                aptRent: "Apartment for rent",
+                fullRoom: "Full double room",
+                singleRoom: "Single room",
+                sharedBed: "Bed in shared room",
+                "20egp": "20 EGP", "350egp": "350 EGP", "250egp": "250 EGP", "150egp": "150 EGP", "100egp": "100 EGP",
+                freeNote: "Note: All services are completely FREE during the trial period!",
+                privacy: "Privacy Policy",
+                terms: "Terms & Conditions",
+                contact: "Contact Support",
+                bySota: "by SOTA-eApps",
+                copyright: "© 2026 SOTA-eApps. All rights reserved."
+            },
+            ar: {
+                title: "هوسلي جو | منصة العقارات الذكية",
+                pricingBtn: "الأسعار",
+                downloadBtn: "تحميل",
+                heroTitle: "ابحث عن مساحتك المثالية",
+                heroDesc: "المنصة الأذكى والأسهل والأكثر أماناً لبيع وشراء وإيجار الشقق والغرف.",
+                downloadSoon: "حمل قريباً",
+                ourServices: "خدماتنا",
+                buySell: "بيع وشراء",
+                buySellDesc: "تصفح شقق مميزة للبيع أو اعرض عقارك للوصول لآلاف المشترين فوراً.",
+                rentApts: "إيجار الشقق",
+                rentAptsDesc: "ابحث عن الشقة المثالية للإيجار التي تناسب نمط حياتك وميزانيتك بأمان وسهولة.",
+                rentRooms: "إيجار الغرف",
+                rentRoomsDesc: "تبحث عن غرفة؟ نوفر غرف مفردة، أسرة مشتركة، وغرف مزدوجة تناسب كافة احتياجاتك.",
+                transparentPricing: "أسعار شفافة",
+                pubPricesTitle: "أسعار النشر",
+                postAd: "نشر إعلان",
+                serviceFeesTitle: "رسوم الخدمة",
+                paidByBuyer: "(تُدفع من قبل المشتري / المستأجر)",
+                aptSale: "شقة للبيع",
+                aptRent: "شقة للإيجار",
+                fullRoom: "غرفة مزدوجة كاملة",
+                singleRoom: "غرفة مفردة",
+                sharedBed: "سرير في غرفة مشتركة",
+                "20egp": "20 ج.م", "350egp": "350 ج.م", "250egp": "250 ج.م", "150egp": "150 ج.م", "100egp": "100 ج.م",
+                freeNote: "ملاحظة: جميع الخدمات مجانية بالكامل خلال الفترة التجريبية!",
+                privacy: "سياسة الخصوصية",
+                terms: "الشروط والأحكام",
+                contact: "تواصل مع الدعم",
+                bySota: "بواسطة SOTA-eApps",
+                copyright: "© 2026 SOTA-eApps. جميع الحقوق محفوظة."
+            }
+        };
+
+        // ضبط اللغة الافتراضية بناءً على المتصفح أو الاختيار السابق
+        const langSpinner = document.getElementById('langSpinner');
+        const userLang = navigator.language || navigator.userLanguage;
+        let currentLang = localStorage.getItem('appLang') || (userLang.startsWith('ar') ? 'ar' : 'en');
+        
+        langSpinner.value = currentLang;
+        setLanguage(currentLang);
+
+        // عند تغيير اللغة من الـ Spinner
+        langSpinner.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        function setLanguage(lang) {
+            localStorage.setItem('appLang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+            
+            // تحديث عنوان الصفحة (Title)
+            document.title = translations[lang].title;
+        }
+
+        // سكريبت الشريط العلوي والظهور التدريجي
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             const heroHeight = document.querySelector('.hero').offsetHeight;
-            
             if (window.scrollY > heroHeight / 2) {
                 navbar.classList.add('scrolled');
             } else {
@@ -524,7 +586,6 @@
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
                 var elementVisible = 100;
-                
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
