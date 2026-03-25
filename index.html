@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-792K5E73WK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-792K5E73WK');
+    </script>
+    <!-- نهاية كود Google Analytics -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title">HouslyGo | Smart Real Estate Platform</title>
@@ -223,7 +234,6 @@
     <header class="hero">
         <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img" id="mainIcon">
         
-        <!-- التحديث الخاص بتأثير الكتابة -->
         <h1>
             <span data-i18n="heroTitleStatic">Find Your Perfect </span>
             <span id="typewriter" class="typewriter-text"></span><span class="cursor">|</span>
@@ -328,7 +338,7 @@
                 title: "HouslyGo | Smart Real Estate Platform",
                 pricingBtn: "Pricing",
                 downloadBtn: "Download",
-                heroTitleStatic: "Find Your Perfect ", // تم تعديلها لتناسب الأنيميشن
+                heroTitleStatic: "Find Your Perfect ", 
                 heroDesc: "The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.",
                 downloadSoon: "Download Soon",
                 ourServices: "Our Services",
@@ -360,7 +370,7 @@
                 title: "هوسلي جو | منصة العقارات الذكية",
                 pricingBtn: "الأسعار",
                 downloadBtn: "تحميل",
-                heroTitleStatic: "ابحث عن ", // تم تعديلها لتناسب الأنيميشن
+                heroTitleStatic: "ابحث عن ", 
                 heroDesc: "المنصة الأذكى والأسهل والأكثر أماناً لبيع وشراء وإيجار الشقق والغرف.",
                 downloadSoon: "حمل قريباً",
                 ourServices: "خدماتنا",
@@ -404,7 +414,6 @@
             const lang = document.documentElement.lang || 'en';
             const currentWords = typingWords[lang];
             
-            // التأكد من عدم تجاوز الفهرس عند تغيير اللغة
             if (tWordIndex >= currentWords.length) tWordIndex = 0;
             
             const currentWord = currentWords[tWordIndex];
@@ -421,12 +430,12 @@
             let typeSpeed = isDeleting ? 50 : 100;
 
             if (!isDeleting && tCharIndex === currentWord.length) {
-                typeSpeed = 2000; // توقف عند اكتمال الكلمة
+                typeSpeed = 2000; 
                 isDeleting = true;
             } else if (isDeleting && tCharIndex === 0) {
                 isDeleting = false;
                 tWordIndex = (tWordIndex + 1) % currentWords.length;
-                typeSpeed = 500; // توقف قبل كتابة الكلمة الجديدة
+                typeSpeed = 500; 
             }
 
             typeTimeout = setTimeout(typeEffect, typeSpeed);
@@ -459,7 +468,6 @@
             
             document.title = translations[lang].title;
 
-            // إعادة ضبط تأثير الكتابة عند تغيير اللغة لتجنب التداخل
             clearTimeout(typeTimeout);
             tCharIndex = 0;
             tWordIndex = 0;
