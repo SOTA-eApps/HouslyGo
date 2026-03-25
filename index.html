@@ -74,16 +74,35 @@
         }
 
         /* أزرار النافبار */
-        .nav-link {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .nav-link:hover {
+        /* تنسيق زر Pricing الجديد ليكون شبه زر التحميل */
+        .pricing-btn {
+            background: rgba(14, 165, 233, 0.1);
             color: var(--primary);
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-btn:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+            transform: translateY(-2px);
         }
 
         .nav-download-btn {
@@ -98,9 +117,7 @@
             opacity: 1;
             transform: scale(1);
         }
-        .navbar.scrolled .nav-link {
-            display: none;
-        }
+        
         .navbar.scrolled .nav-download-btn {
             display: flex;
             animation: fadeInRight 0.3s ease forwards;
@@ -331,33 +348,35 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
+    
+<nav class="navbar" id="navbar">
         <div class="nav-left">
             <img src="ico0n.png" alt="HouslyGo Icon" class="nav-icon">
             <div class="brand">HouslyGo</div>
         </div>
         <div class="nav-right">
-            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#pricing" class="pricing-btn">
+                <i class="fa-solid fa-tags"></i> Pricing
+            </a>
             <button class="btn-primary nav-download-btn">
-                <i class="fa-brands fa-google-play"></i> Download
+                <i class="fa-brands fa-android"></i> Download
             </button>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <header class="hero">
+    
+<header class="hero">
         <img src="ico0n.png" alt="HouslyGo App Icon" class="hero-img" id="mainIcon">
         <h1>Find Your Perfect Space</h1>
         <p>The smartest, easiest, and most secure platform for buying, selling, and renting apartments and rooms.</p>
         <button class="btn-primary" id="mainDownloadBtn">
-            <i class="fa-brands fa-google-play"></i> Download Soon
+            <i class="fa-brands fa-android"></i> Download Soon
         </button>
     </header>
 
     <main class="container">
-        <!-- Services -->
-        <h2 class="section-title reveal">Our Services</h2>
+        
+<h2 class="section-title reveal">Our Services</h2>
         <div class="services-grid reveal">
             <div class="card">
                 <i class="fa-solid fa-building"></i>
@@ -376,8 +395,8 @@
             </div>
         </div>
 
-        <!-- Pricing ID -->
-        <div id="pricing">
+        
+<div id="pricing">
             <h2 class="section-title reveal">Transparent Pricing</h2>
             <div class="pricing-container reveal">
                 
@@ -401,15 +420,15 @@
 
             </div>
 
-            <!-- Free Trial Note -->
-            <div class="free-note reveal">
+            
+<div class="free-note reveal">
                 <i class="fa-solid fa-star"></i> Note: All services are completely FREE during the trial period!
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    
+<footer>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms & Conditions</a>
@@ -427,8 +446,8 @@
         </p>
     </footer>
 
-    <!-- JavaScript للتحكم في الشريط العلوي وحركات الظهور التدريجي -->
-    <script>
+    
+<script>
         // تغيير الشريط العلوي عند التمرير
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
