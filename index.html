@@ -9,13 +9,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* === متغيرات الألوان الأساسية (الوضع الداكن هو الافتراضي) === */
         :root {
             --primary: #0ea5e9;
             --secondary: #6366f1;
-            --bg-dark: #0f172a;
+            
+            /* ألوان الوضع الداكن */
+            --bg-color: #0f172a;
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --nav-bg: rgba(15, 23, 42, 0.85);
+            --hero-bg: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
+            --footer-bg: #020617;
+            
+            /* ألوان مخصصة للعناصر */
+            --badge-bg: rgba(14, 165, 233, 0.2);
+            --badge-text: #fff;
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            
+            /* ألوان الملاحظة المجانية */
+            --note-bg: rgba(234, 179, 8, 0.1);
+            --note-border: rgba(234, 179, 8, 0.4);
+            --note-text: #facc15;
+        }
+
+        /* === متغيرات الوضع الفاتح (تعمل تلقائياً إذا كان جهاز المستخدم فاتحاً) === */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --primary: #0284c7; /* لون أزرق أغمق قليلاً ليناسب الخلفية الفاتحة */
+                --secondary: #4f46e5;
+                
+                /* ألوان الوضع الفاتح */
+                --bg-color: #f8fafc;
+                --card-bg: #ffffff;
+                --text-main: #0f172a;
+                --text-muted: #475569;
+                --border-color: rgba(0, 0, 0, 0.1);
+                --nav-bg: rgba(255, 255, 255, 0.85);
+                --hero-bg: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #f8fafc 70%);
+                --footer-bg: #f1f5f9;
+                
+                /* ألوان مخصصة للعناصر */
+                --badge-bg: rgba(14, 165, 233, 0.15);
+                --badge-text: #0284c7;
+                --card-shadow: rgba(0, 0, 0, 0.1);
+
+                /* ألوان الملاحظة المجانية في الفاتح */
+                --note-bg: rgba(245, 158, 11, 0.1);
+                --note-border: rgba(245, 158, 11, 0.4);
+                --note-text: #b45309;
+            }
         }
 
         * {
@@ -27,10 +72,11 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Navbar */
@@ -39,13 +85,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(15, 23, 42, 0.85);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
@@ -127,7 +173,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Buttons */
+        /* الأزرار العامة */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -159,7 +205,8 @@
             justify-content: center;
             text-align: center;
             padding: 120px 20px 60px;
-            background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
+            background: var(--hero-bg);
+            transition: background 0.3s ease;
         }
 
         .hero-img {
@@ -215,7 +262,7 @@
             background: var(--card-bg);
             padding: 40px 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             transition: all 0.4s ease;
             text-align: center;
         }
@@ -223,7 +270,7 @@
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px var(--card-shadow);
         }
 
         .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
@@ -239,14 +286,15 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .pricing-box h3 {
             font-size: 1.8rem;
             margin-bottom: 30px;
             color: var(--primary);
-            border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+            border-bottom: 2px dashed var(--border-color);
             padding-bottom: 15px;
         }
 
@@ -256,36 +304,38 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-color);
             font-size: 1.1rem;
         }
         .price-list li:last-child { border-bottom: none; }
         .price-list li span {
             font-weight: 700;
-            color: #fff;
-            background: rgba(14, 165, 233, 0.2);
+            color: var(--badge-text);
+            background: var(--badge-bg);
             padding: 5px 15px;
             border-radius: 50px;
             font-size: 1rem;
         }
 
         .free-note {
-            background: rgba(234, 179, 8, 0.1);
-            border: 1px dashed rgba(234, 179, 8, 0.4);
-            color: #facc15;
+            background: var(--note-bg);
+            border: 1px dashed var(--note-border);
+            color: var(--note-text);
             text-align: center;
             padding: 20px;
             border-radius: 15px;
             margin-top: 40px;
             font-weight: 600;
             font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
 
         footer {
-            background: #020617;
+            background: var(--footer-bg);
             padding: 60px 20px 30px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-color);
+            transition: background 0.3s ease;
         }
 
         .footer-links {
@@ -319,7 +369,7 @@
         }
 
         .copyright {
-            color: rgba(255, 255, 255, 0.3);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
@@ -333,18 +383,16 @@
             transform: translateY(0);
         }
 
-        /* 📱 إعدادات الموبايل (حل مشكلة التداخل) 📱 */
+        /* 📱 إعدادات الموبايل 📱 */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .hero { padding-top: 100px; }
             
-            /* تعديل النافبار للموبايل */
             .navbar { padding: 12px 15px; }
             .brand { font-size: 18px; }
             .nav-left { gap: 8px; }
             .nav-right { gap: 8px; }
             
-            /* تصغير الأزرار */
             .pricing-btn {
                 padding: 8px 12px;
                 font-size: 13px;
@@ -357,7 +405,6 @@
                 width: 28px;
             }
 
-            /* إخفاء كلمة HouslyGo عند التمرير لتوفير مساحة للزرين والأيقونة فقط */
             .navbar.scrolled .brand {
                 display: none;
             }
@@ -423,7 +470,7 @@
                 </div>
 
                 <div class="pricing-box">
-                    <h3><i class="fa-solid fa-handshake"></i> Service Fees <br><small style="font-size:1rem; color:#94a3b8; font-weight:400;">(Paid by buyer / renter)</small></h3>
+                    <h3><i class="fa-solid fa-handshake"></i> Service Fees <br><small style="font-size:1rem; color:var(--text-muted); font-weight:400;">(Paid by buyer / renter)</small></h3>
                     <ul class="price-list">
                         <li>Apartment for sale <span>350 EGP</span></li>
                         <li>Apartment for rent <span>250 EGP</span></li>
