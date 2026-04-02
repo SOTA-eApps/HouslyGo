@@ -147,9 +147,49 @@
             text-align: center;
         }
 
-        .contact-item span {
+        /* تنسيق الأزرار بجوار النص */
+        .contact-value-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             padding-inline-start: 40px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .contact-value-wrapper span {
             color: var(--text-muted);
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .email-btn {
+            background-color: #ea4335; /* لون جيميل */
+        }
+        .email-btn:hover {
+            background-color: #c5221f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(234, 67, 53, 0.3);
+        }
+
+        .wa-btn {
+            background-color: #25D366; /* لون واتساب */
+        }
+        .wa-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
         }
 
         /* Footer */
@@ -173,7 +213,7 @@
             
             .contact-item { font-size: 1rem; }
             .contact-item strong { font-size: 1.1rem; }
-            .contact-item span { padding-inline-start: 0; margin-top: 5px; }
+            .contact-value-wrapper { padding-inline-start: 0; gap: 10px; margin-top: 5px; }
         }
     </style>
 </head>
@@ -206,22 +246,36 @@
             
             <div class="contact-item">
                 <strong data-i18n="emailLabel"><i class="fa-solid fa-envelope"></i> Email:</strong>
-                <span data-i18n="emailVal">nestbooksupport@gmail.com</span>
+                <div class="contact-value-wrapper">
+                    <span data-i18n="emailVal">nestbooksupport@gmail.com</span>
+                    <a href="mailto:nestbooksupport@gmail.com" class="action-btn email-btn">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="emailBtn">Send Email</span>
+                    </a>
+                </div>
             </div>
 
             <div class="contact-item">
                 <strong data-i18n="phoneLabel"><i class="fa-brands fa-whatsapp"></i> Contact Number (WhatsApp Only):</strong>
-                <span dir="ltr" style="text-align: left;" data-i18n="phoneVal">01501179906 (or +201501179906)</span>
+                <div class="contact-value-wrapper">
+                    <span dir="ltr" style="text-align: left;" data-i18n="phoneVal">01501179906 (or +201501179906)</span>
+                    <a href="https://wa.me/201501179906" target="_blank" class="action-btn wa-btn">
+                        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="waBtn">Chat on WhatsApp</span>
+                    </a>
+                </div>
             </div>
 
             <div class="contact-item">
                 <strong data-i18n="addressLabel"><i class="fa-solid fa-location-dot"></i> Address:</strong>
-                <span data-i18n="addressVal">Dahab City, South Sinai Governorate, Egypt.</span>
+                <div class="contact-value-wrapper">
+                    <span data-i18n="addressVal">Dahab City, South Sinai Governorate, Egypt.</span>
+                </div>
             </div>
 
             <div class="contact-item">
                 <strong data-i18n="hoursLabel"><i class="fa-solid fa-clock"></i> Customer Service Hours:</strong>
-                <span data-i18n="hoursVal">Sunday to Thursday (10 AM to 6 PM).</span>
+                <div class="contact-value-wrapper">
+                    <span data-i18n="hoursVal">Sunday to Thursday (10 AM to 6 PM).</span>
+                </div>
             </div>
 
         </div>
@@ -245,8 +299,10 @@
                 introText: "We are always happy to hear from you at NestBook. If you have any inquiries, encounter any issues, or wish to provide a suggestion, please do not hesitate to reach out to us through the following communication channels:",
                 emailLabel: "<i class=\"fa-solid fa-envelope\"></i> Email:",
                 emailVal: "nestbooksupport@gmail.com",
+                emailBtn: "Send Email",
                 phoneLabel: "<i class=\"fa-brands fa-whatsapp\"></i> Contact Number (WhatsApp Only):",
                 phoneVal: "01501179906 (or +201501179906)",
+                waBtn: "Chat on WhatsApp",
                 addressLabel: "<i class=\"fa-solid fa-location-dot\"></i> Address:",
                 addressVal: "Dahab City, South Sinai Governorate, Egypt.",
                 hoursLabel: "<i class=\"fa-solid fa-clock\"></i> Customer Service Hours:",
@@ -259,8 +315,10 @@
                 introText: "نحن في منصة \"NestBook\" نسعد دائماً بتواصلكم معنا. إذا كان لديك أي استفسار، أو واجهت أي مشكلة، أو ترغب في تقديم اقتراح، لا تتردد في الوصول إلينا عبر قنوات الاتصال التالية:",
                 emailLabel: "<i class=\"fa-solid fa-envelope\"></i> البريد الإلكتروني:",
                 emailVal: "nestbooksupport@gmail.com",
+                emailBtn: "إرسال بريد",
                 phoneLabel: "<i class=\"fa-brands fa-whatsapp\"></i> رقم التواصل (واتساب فقط):",
                 phoneVal: "01501179906 (أو +201501179906)",
+                waBtn: "مراسلة واتساب",
                 addressLabel: "<i class=\"fa-solid fa-location-dot\"></i> العنوان:",
                 addressVal: "مدينة دهب، محافظة جنوب سيناء، جمهورية مصر العربية.",
                 hoursLabel: "<i class=\"fa-solid fa-clock\"></i> مواعيد العمل لخدمة العملاء:",
