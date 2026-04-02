@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-792K5E73WK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-792K5E73WK');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">NestBook | Refund Policy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* المتغيرات الأساسية للموقع */
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #6366f1;
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(15, 23, 42, 0.85);
+            --hero-bg: radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                       radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                       #0f172a;
+            --footer-bg: #020617;
+            --font-en: 'Poppins', sans-serif;
+            --font-ar: 'Cairo', sans-serif;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --primary: #0284c7; 
+                --secondary: #4f46e5;
+                --bg-color: #f8fafc;
+                --card-bg: rgba(255, 255, 255, 0.7);
+                --text-main: #0f172a;
+                --text-muted: #475569;
+                --border-color: rgba(0, 0, 0, 0.05);
+                --nav-bg: rgba(255, 255, 255, 0.85);
+                --hero-bg: radial-gradient(circle at 20% 30%, rgba(2, 132, 199, 0.1) 0%, transparent 40%),
+                           radial-gradient(circle at 80% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 40%),
+                           #f1f5f9;
+                --footer-bg: #e2e8f0;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: var(--hero-bg);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: var(--font-en);
+        }
+        
+        body[dir="rtl"] { font-family: var(--font-ar); }
+
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .nav-left { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-icon { width: 35px; border-radius: 8px; opacity: 1; transform: scale(1); } 
+        .brand { font-size: 24px; font-weight: 700; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+
+        .lang-wrapper { background: rgba(14, 165, 233, 0.1); color: var(--primary); padding: 6px 14px; border: 1px solid var(--primary); border-radius: 50px; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.3s ease; font-size: 13px; }
+        .lang-wrapper:hover { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3); transform: translateY(-2px); }
+        .lang-spinner { background: transparent; color: inherit; border: none; font-size: 13px; font-weight: 600; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; padding: 0; }
+        .lang-spinner option { background: var(--bg-color); color: var(--text-main); }
+
+        /* تصميم صفحة السياسات */
+        .legal-header {
+            text-align: center;
+            padding: 140px 20px 40px;
+        }
+        .legal-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .legal-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .legal-container {
+            max-width: 900px; 
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .legal-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .legal-card h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-card h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-card p {
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .legal-card ul {
+            margin-bottom: 20px;
+            padding-inline-start: 20px; 
+            color: var(--text-muted);
+        }
+
+        .legal-card li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer { background: var(--footer-bg); padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(--border-color); }
+        .company-info { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .sota-logo { width: 40px; border-radius: 10px; }
+        .copyright { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .legal-header { padding-top: 110px; }
+            .legal-header h1 { font-size: 2.2rem; }
+            .legal-card { padding: 30px 20px; }
+            .legal-card h2 { font-size: 1.3rem; }
+            
+            .navbar { padding: 12px 15px; }
+            .brand { display: none; } 
+            .nav-left { gap: 8px; }
+            .nav-right { gap: 6px; }
+            .lang-wrapper { padding: 4px 10px; font-size: 11px; }
+            .lang-spinner { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-left">
+            <img src="ico0n.png" alt="NestBook Icon" class="nav-icon">
+            <div class="brand">NestBook</div>
+        </a>
+        
+        <div class="nav-right">
+            <div class="lang-wrapper">
+                <i class="fa-solid fa-globe"></i>
+                <select id="langSpinner" class="lang-spinner">
+                    <option value="en">EN</option>
+                    <option value="ar">عربي</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <header class="legal-header">
+        <h1 data-i18n="pageTitle">Refund Policy</h1>
+        <p data-i18n="lastUpdated">Last updated: April 2026</p>
+    </header>
+
+    <main class="legal-container">
+        <div class="legal-card">
+            
+            <h2 data-i18n="sec1Title">1. General Rule (Non-Refundable)</h2>
+            <p data-i18n="sec1Text1">Due to the nature of the services provided by the "NestBook" app, which consist of revealing and providing the contact details of property owners instantly upon payment completion, all amounts paid as an app commission are strictly non-refundable under any circumstances.</p>
+            <p data-i18n="sec1Text2">Once the payment process is completed and the owner's details appear, the service is considered fully rendered. The user has no right to request a refund, whether they conclude a contract with the owner or not.</p>
+
+            <h2 data-i18n="sec2Title">2. Exceptions (Technical Errors Only)</h2>
+            <p data-i18n="sec2Intro">The only situation where the "NestBook" app is obligated to refund paid amounts is in the event of a technical error during the payment process, which includes the following cases:</p>
+            <ul>
+                <li data-i18n="sec2Bul1"><strong>Double Deduction:</strong> If the amount is deducted from your bank card or electronic wallet more than once for the same individual transaction due to a technical malfunction in the payment gateway or the app.</li>
+                <li data-i18n="sec2Bul2"><strong>Failure to Display Data:</strong> If the amount is deducted successfully, but due to an explicit technical failure in the app's servers (system), the owner's contact details do not appear and are not sent to you by any means.</li>
+            </ul>
+
+            <h2 data-i18n="sec3Title">3. Refund Claim Procedures (In Cases of Technical Error)</h2>
+            <ul>
+                <li data-i18n="sec3Bul1">The user must contact the "NestBook" technical support team within a maximum period of 72 hours from the time the issue occurred.</li>
+                <li data-i18n="sec3Bul2">Proof of payment must be attached (Transaction ID, deduction message, or a screenshot of the error).</li>
+                <li data-i18n="sec3Bul3">Our team will review the technical logs with the payment gateway to verify the validity of the complaint.</li>
+            </ul>
+
+            <h2 data-i18n="sec4Title">4. Refund Duration</h2>
+            <ul>
+                <li data-i18n="sec4Bul1">If a technical error is proven and the refund request is approved, the amount will be refunded to the same payment method used (whether a bank card or an electronic wallet).</li>
+                <li data-i18n="sec4Bul2">The refund process and its appearance in your account may take from 7 to 14 business days, depending on the policies of the card-issuing bank or the electronic wallet service provider.</li>
+            </ul>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="company-info">
+            <img src="sota.png" alt="SOTA-eApps Logo" class="sota-logo">
+            <span style="font-size: 1.1rem; font-weight: 600;" data-i18n="bySota">by SOTA-eApps</span>
+        </div>
+        <p class="copyright">
+            <span data-i18n="copyright">&copy; 2026 SOTA-eApps. All rights reserved.</span> <br>
+            nestbooksupport@gmail.com
+        </p>
+    </footer>
+
+    <script>
+        // قواميس الترجمة لصفحة سياسة الدفع والاسترجاع
+        const translations = {
+            en: {
+                pageTitle: "Payment & Refund Policy",
+                lastUpdated: "Last updated: April 2026",
+                sec1Title: "1. General Rule (Non-Refundable)",
+                sec1Text1: "Due to the nature of the services provided by the \"NestBook\" app, which consist of revealing and providing the contact details of property owners instantly upon payment completion, all amounts paid as an app commission are strictly non-refundable under any circumstances.",
+                sec1Text2: "Once the payment process is completed and the owner's details appear, the service is considered fully rendered. The user has no right to request a refund, whether they conclude a contract with the owner or not.",
+                sec2Title: "2. Exceptions (Technical Errors Only)",
+                sec2Intro: "The only situation where the \"NestBook\" app is obligated to refund paid amounts is in the event of a technical error during the payment process, which includes the following cases:",
+                sec2Bul1: "<strong>Double Deduction:</strong> If the amount is deducted from your bank card or electronic wallet more than once for the same individual transaction due to a technical malfunction in the payment gateway or the app.",
+                sec2Bul2: "<strong>Failure to Display Data:</strong> If the amount is deducted successfully, but due to an explicit technical failure in the app's servers (system), the owner's contact details do not appear and are not sent to you by any means.",
+                sec3Title: "3. Refund Claim Procedures (In Cases of Technical Error)",
+                sec3Bul1: "The user must contact the \"NestBook\" technical support team within a maximum period of 72 hours from the time the issue occurred.",
+                sec3Bul2: "Proof of payment must be attached (Transaction ID, deduction message, or a screenshot of the error).",
+                sec3Bul3: "Our team will review the technical logs with the payment gateway to verify the validity of the complaint.",
+                sec4Title: "4. Refund Duration",
+                sec4Bul1: "If a technical error is proven and the refund request is approved, the amount will be refunded to the same payment method used (whether a bank card or an electronic wallet).",
+                sec4Bul2: "The refund process and its appearance in your account may take from 7 to 14 business days, depending on the policies of the card-issuing bank or the electronic wallet service provider.",
+                bySota: "by SOTA-eApps",
+                copyright: "© 2026 SOTA-eApps. All rights reserved."
+            },
+            ar: {
+                pageTitle: "سياسة الدفع والاسترجاع",
+                lastUpdated: "آخر تحديث: أبريل ٢٠٢٦",
+                sec1Title: "1. القاعدة العامة (عدم الاسترجاع)",
+                sec1Text1: "نظراً لطبيعة الخدمات التي يقدمها تطبيق \"NestBook\" والتي تتمثل في كشف وتوفير بيانات التواصل الخاصة بمُلاك الوحدات السكنية بشكل فوري ولحظي بمجرد إتمام الدفع، فإن جميع المبالغ المدفوعة كعمولة للتطبيق غير قابلة للاسترجاع (Non-Refundable) تحت أي ظرف.",
+                sec1Text2: "بمجرد إتمام عملية الدفع وظهور بيانات المالك، تُعتبر الخدمة قد قُدمت بالكامل، ولا يحق للمستخدم المطالبة باسترداد المبلغ سواء أتم التعاقد مع المالك أم لم يتمه.",
+                sec2Title: "2. الاستثناءات (الأخطاء التقنية فقط)",
+                sec2Intro: "الحالة الوحيدة التي يلتزم فيها تطبيق \"NestBook\" برد المبالغ المدفوعة هي حدوث خطأ تقني أثناء عملية الدفع، وتشمل هذه الحالات:",
+                sec2Bul1: "<strong>الدفع المزدوج (Double Deduction):</strong> إذا تم خصم المبلغ من بطاقتك البنكية أو محفظتك الإلكترونية أكثر من مرة لنفس عملية الحجز الفردية بسبب عطل فني في بوابة الدفع أو التطبيق.",
+                sec2Bul2: "<strong>فشل ظهور البيانات:</strong> إذا تم خصم المبلغ بنجاح، ولكن بسبب عطل فني صريح في خوادم التطبيق (السيستم) لم تظهر بيانات التواصل الخاصة بالمالك ولم يتم إرسالها إليك بأي وسيلة.",
+                sec3Title: "3. إجراءات المطالبة بالاسترجاع (في حالات الخطأ التقني)",
+                sec3Bul1: "يجب على المستخدم التواصل مع فريق الدعم الفني لتطبيق \"NestBook\" خلال مدة أقصاها 72 ساعة من وقت حدوث المشكلة.",
+                sec3Bul2: "يجب إرفاق إثبات الدفع (رقم العملية Transaction ID، أو رسالة الخصم، أو لقطة شاشة للخطأ).",
+                sec3Bul3: "سيقوم فريقنا بمراجعة السجلات التقنية (Logs) مع بوابة الدفع للتأكد من صحة الشكوى.",
+                sec4Title: "4. مدة الاسترجاع",
+                sec4Bul1: "في حال ثبوت الخطأ التقني والموافقة على طلب الاسترجاع، سيتم رد المبلغ إلى نفس وسيلة الدفع التي تم استخدامها (سواء كانت بطاقة بنكية أو محفظة إلكترونية).",
+                sec4Bul2: "قد تستغرق عملية استرداد الأموال وظهورها في حسابك من 7 إلى 14 يوم عمل، وذلك حسب سياسات البنك المُصدر للبطاقة أو مزود خدمة المحفظة الإلكترونية.",
+                bySota: "بواسطة SOTA-eApps",
+                copyright: "© 2026 SOTA-eApps. جميع الحقوق محفوظة."
+            }
+        };
+
+        const langSpinner = document.getElementById('langSpinner');
+        const userLang = navigator.language || navigator.userLanguage;
+        let currentLang = localStorage.getItem('appLang') || (userLang.startsWith('ar') ? 'ar' : 'en');
+        
+        langSpinner.value = currentLang;
+        setLanguage(currentLang);
+
+        langSpinner.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        function setLanguage(lang) {
+            localStorage.setItem('appLang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            document.title = translations[lang].pageTitle + (lang === 'ar' ? " | نيست بوك" : " | NestBook");
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
